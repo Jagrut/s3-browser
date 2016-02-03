@@ -1,0 +1,63 @@
+@(error:String)
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>S3 login</title>
+<link rel="stylesheet" type="text/css" href='@routes.Assets.at("stylesheets/style.css")' />	
+
+<link rel="stylesheet" type="text/css" href='@routes.Assets.at("stylesheets/bootstrap.min.css")' />	
+    <script type="text/javascript" src="@routes.Assets.at("javascripts/jquery-1.11.2.min.js")"></script>
+   <script type="text/javascript" src="@routes.Assets.at("javascripts/angular.min.js")"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+<!--- Page Wrapper Start Here -->
+<div id="wrapper">
+	
+    <div id="middle_section">
+    	<div id="contain_block">
+            
+             
+            <div id="Login_right">
+                <div class="formL">
+                    <h2>Enter Your S3 Credentials</h2>
+                    <div class="formL_block">
+                    	@helper.form(action = routes.Application.authenticate, 'role -> "form") {
+                    	 
+                        <fieldset>
+                            <span>
+                                <label class="span_label" >Access Key</label>
+                               
+                                <input type="text" value="" class="span_input" placeholder="Enter Access key" name="accesskey" id="accesskey" required>
+                            </span>
+                            <span>
+                                <label class="span_label">Secret Key</label>
+                                
+                                <input  name="password" id="password" type="password" placeholder="Enter your Secret" class="span_input" required>
+                            </span>
+                            <span>
+                                <label class="span_label">Bucket Name</label>
+                                
+                                <input name="bucket" id="bucket" type="text" placeholder="Enter Bucket name without slash" class="span_input" required/>
+                            </span>
+                            
+                            <span style="margin-top:14px;">
+                            	<input name="Submit" id="submit" type="submit" value="SUBMIT" class="buttonL" />
+                                
+                            </span>
+                        </fieldset>
+                     <div class="btn-danger">@error</div>  
+                     }
+                     </div>
+                     
+                </div>
+                
+            </div>
+	    </div>
+	</div>
+	</div>
+	
+</body>
+</html>

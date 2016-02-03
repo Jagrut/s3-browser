@@ -1,0 +1,92 @@
+@(un:String,error:String)
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>S3 Browser with Java, Play 2 and Angular</title>
+    <link rel="shortcut icon" type="image/png" href='@routes.Assets.at("images/favicon.png")'>
+    <link rel="stylesheet" type="text/css" href='@routes.Assets.at("stylesheets/bootstrap.min.css")' />	
+    <link rel="stylesheet" type="text/css" href='@routes.Assets.at("stylesheets/style.css")' />
+    
+    <script type="text/javascript" src="@routes.Assets.at("javascripts/jquery-1.11.2.min.js")"></script>
+   <script type="text/javascript" src="@routes.Assets.at("javascripts/angular.min.js")"></script>
+	<script type="text/javascript" src="@routes.Assets.at("javascripts/bootstrap.min.js")"></script>
+	
+	<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>-->
+	
+	
+   <script type="text/javascript" src="@routes.Assets.at("javascripts/s3app.js")"></script>
+
+</head>
+<body>
+<div id="container" ng-app="S3browserapp" ng-controller="s3Controller">
+   	  <div id="heading">You are Browsing <span style="color:red">@un</span> bucket</div>
+   	  <div class="btn-danger" ng-show="errorstatus">Could not Load Data from Amazon AWS.Check your Net-connection or try after sometime.</div>
+   	  
+   	 
+   	  <div class="modal  fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  		<div class="modal-dialog" role="document">
+    		<div class="modal-content">
+      			
+      		<div class="modal-body">
+        	<img src="@routes.Assets.at("images/spiffygif_30x30.gif")" />
+      		</div>
+      
+    		</div>
+  		</div>
+	</div>
+   	  
+   	  
+   	  <div id="currfolder" class="highlight">
+   	  		Current folder&nbsp; :-&nbsp;<span class="cmnasd styleclass" id="cliable1" style="cursor:pointer" ng-click="menufunc($event)">@un/</span>
+   	  		
+   	  </div><br>
+   	  <div class="input-group">
+ 	  <input class="form-control" ng-model="search" placeholder="Search" type="text" ng-change="filter()"  /> 
+ 	  <span class="input-group-addon">
+      		<span class="glyphicon glyphicon-search"></span>
+	  </span>
+	  </div><br>
+   	  
+   	  
+	<table>
+		<thead>
+			<tr>
+				<th width="5%" class="EmpId">Type</th>
+				<th class="name"><a href="" ng-click="orderByField='key';reverseSort=!reverseSort"> Name&nbsp </a></th>
+				<th class="Email"><a href="" ng-click="orderByField='size';reverseSort=!reverseSort"> Size(bytes)&nbsp  </a></th>
+				<th class="lmodified"><a href="" ng-click="orderByField='lastModified';reverseSort=!reverseSort"> Last modified&nbsp </a></th>
+			</tr>
+		</thead>
+	<tbody>
+	<tr ng-show="numberOfPages" ng-repeat="content in filtered= (foldercontents | filter:search) | orderBy:orderByField:reverseSort | startFrom:currentPage*pageSize | limitTo:pageSize  ">
+      <td ng-show="content.lastModified"><img src="@routes.Assets.at("images/document.png")" /></td>
+      
+      <td ng-show="!content.lastModified"><img src="@routes.Assets.at("images/folder-horizontal.png")" /></td>
+      <td ng-show="content.lastModified">{{ content.key }}</td>
+      <td ng-show="!content.lastModified" ng-click="clickfn(content.key)" style="cursor:pointer">{{ content.key }}</td>
+      
+      <td>{{ content.size }}</td>
+	  <td>{{ content.lastModified | date: "dd-MMM-yyyy  hh:mm:ss" }}</td>
+   </tr>
+   <tr ng-show="!numberOfPages">
+		<td id="dataempty" colspan="4"> NO DATA AVAILABLE</td>
+   </tr>
+   
+	
+	</tbody>
+	</table>
+	<button class="pagebutton" ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
+        Previous
+    </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    {{currentPage+1}}/{{numberOfPages}}
+    <button class="pagebutton" ng-disabled="currentPage >= numberOfPages - 1" ng-click="currentPage=currentPage+1">
+        Next
+    </button>
+    <!-- <pagination data-boundary-links="true" data-num-pages="numberOfPages" data-current-page="currentPage" max-size="pageSize" class="pagination-small" data-previous-text="&laquo;" data-next-text="&raquo;"></pagination>-->
+	<p id="demo"></p>
+</div>
+
+</body>
+</html>
