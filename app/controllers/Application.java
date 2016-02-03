@@ -39,9 +39,7 @@ public class Application extends Controller {
 
 	public static Result listobject(String mname){
 		System.out.println("in liar objecg");
-		//String accessKey ="AKIAJWDV5KLQUY6BEO3A" ;
-		//String secretKey ="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";
-		//String s3Bucket ="cb-interview";
+		
 		ObjectListing objects;
 
 		AWSCredentials awsCredentials = new BasicAWSCredentials(awsarray[0], awsarray[1]);
