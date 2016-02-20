@@ -1,7 +1,10 @@
 #How to Run?
 	-use play 2.2.6 to run this application.  
+	
 use command in the project directory.  
-**play run**  
+	**play run**
+
+	
 -This can be a good example of real time application of play framework for those who wants to know play.	
 -Through this application You can browse your AWS s3 bucket by providing your AWS credential.  
 -You can sort the columns and also search the desired file or folder.  
