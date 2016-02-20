@@ -2,7 +2,7 @@
 	-use play 2.2.6 to run this application.  
 	
 use command in the project directory.  
-	**play run**
+'''	**play run** '''
 
 	
 -This can be a good example of real time application of play framework for those who wants to know play.	
