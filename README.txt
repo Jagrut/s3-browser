@@ -1,4 +1,4 @@
-How to Run?
+<h1><b>How to Run?</b></h1>
 	-use play 2.2.6 to run this application.
 use command play run in the project directory.
 -This can be a good example of real time application of play framework for those who wants to know play.	
